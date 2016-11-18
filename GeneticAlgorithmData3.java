@@ -18,8 +18,8 @@ public class GeneticAlgorithmData3 {
 
     static int N = 130; //Number of genes
     static int P = 50; //Population size 
-    static int G = 2500; //Number of generations
-    static double M = 0.009; //Mutation rate (Max 3 dp)
+    static int G = 1000; //Number of generations
+    static double M = 0.012; //Mutation rate (Max 3 dp)
     static int F = 0; //Best average fitness
     static int Generation = 0; //Generation with best average fitness
     static IndividualFloat Fittest = new IndividualFloat(null, 0); //Fittest individual from current Population
@@ -63,7 +63,6 @@ public class GeneticAlgorithmData3 {
                 writer.flush();
             }
         }
-
     }
 
     public static int randInt(int max, int min) {//Returns a random integer between a min & max value entered
@@ -127,7 +126,6 @@ public class GeneticAlgorithmData3 {
             }
             Population[i] = new IndividualFloat(gene, 0);
         }
-
     }
 
     public static void fitness() {//Calculates the fitness for each individual within a Population
@@ -167,9 +165,7 @@ public class GeneticAlgorithmData3 {
 
                         c = c + 2;
 
-                        if (condition[k] == 2) {
-                            m++;
-                        } else if (conditionMin <= data[k] && data[k] <= conditionMax) {
+                        if (conditionMin <= data[k] && data[k] <= conditionMax) {
                             m++;
                         }
                     }
@@ -236,7 +232,6 @@ public class GeneticAlgorithmData3 {
             }
             offspring[i] = new IndividualFloat(offspring1, 0);
         }
-
         Population = offspring;
     }
 
@@ -248,7 +243,15 @@ public class GeneticAlgorithmData3 {
             for (int j = 0; j < N; j++) {
                 int k = randInt(1000, 0);
                 if (k < probability) {
-                    gene[j] = randFloat();
+                    if ((j + 1) % RuleLength == 0) {
+                        if (gene[j] == 0.0) {
+                            gene[j] = (float) 1.0;
+                        } else {
+                            gene[j] = (float) 0.0;
+                        }
+                    } else {
+                        gene[j] = randFloat();
+                    }
                 }
             }
             Population[i].setGene(gene);
