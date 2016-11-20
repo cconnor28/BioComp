@@ -63,7 +63,6 @@ public class GeneticAlgorithmData2 {
                 writer.flush();
             }
         }
-
     }
 
     public static int randInt(int max, int min) {//Returns a random integer between a min & max value entered
@@ -117,7 +116,6 @@ public class GeneticAlgorithmData2 {
             }
             Population[i] = new Individual(gene, 0);
         }
-
     }
 
     public static void fitness() {//Calculates the fitness for each individual within a Population
@@ -130,6 +128,7 @@ public class GeneticAlgorithmData2 {
             gene = Population[i].getGene();
             for (DataFile DataSet1 : DataSet) {
                 int[] data = DataSet1.getVariable();
+                //Seperates the gene into conditions and outputs
                 for (int j = 0; j < N / RuleLength; j++) {
                     int g = j * RuleLength;
                     for (int k = 0; k < RuleLength; k++) {
@@ -212,7 +211,6 @@ public class GeneticAlgorithmData2 {
             }
             offspring[i] = new Individual(offspring1, 0);
         }
-
         Population = offspring;
     }
 
