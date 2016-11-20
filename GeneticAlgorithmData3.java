@@ -139,6 +139,7 @@ public class GeneticAlgorithmData3 {
             gene = Population[i].getGene();
             for (DataFileFloat DataSet1 : DataSet) {
                 float[] data = DataSet1.getVariable();
+                //Seperates the gene into conditions and outputs
                 for (int j = 0; j < N / RuleLength; j++) {
                     int g = j * RuleLength;
                     for (int k = 0; k < RuleLength; k++) {
@@ -243,12 +244,14 @@ public class GeneticAlgorithmData3 {
             for (int j = 0; j < N; j++) {
                 int k = randInt(1000, 0);
                 if (k < probability) {
+                    //If the bit is the output
                     if ((j + 1) % RuleLength == 0) {
                         if (gene[j] == 0.0) {
                             gene[j] = (float) 1.0;
                         } else {
                             gene[j] = (float) 0.0;
                         }
+                        //If the bit is part of the condition
                     } else {
                         gene[j] = randFloat();
                     }
